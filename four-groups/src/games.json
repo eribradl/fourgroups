@@ -1,0 +1,53 @@
+{
+  "games": [
+    {
+      "id": "1",
+      "answers": [
+        {
+          "description": "STATES OF MATTER",
+          "words": [
+            "SOLID",
+            "LIQUID",
+            "GAS",
+            "PLASMA"
+          ],
+          "emoji": "🟨",
+          "color": "#fbd400"
+        },
+        {
+          "description": "NONLIVING THINGS",
+          "words": [
+            "WATER",
+            "SUN",
+            "SAND",
+            "AIR"
+          ],
+          "emoji": "🟩",
+          "color": "#69e352"
+        },
+        {
+          "description": "TYPES OF PRECIPITATION",
+          "words": [
+            "HAIL",
+            "SNOW",
+            "RAIN",
+            "SLEET"
+          ],
+          "emoji": "🟦",
+          "color": "#5492ff"
+        },
+        {
+          "description": "ENDS OF ROCK CYCLE SONG",
+          "words": [
+            "ROCK",
+            "AWAY",
+            "OFF",
+            "TIGHT"
+          ],
+          "emoji": "🟪",
+          "color": "#df7bea"
+        }
+      ]
+    }
+  ]
+}
