@@ -14,9 +14,10 @@
 .card {
   display: flex;
   border-radius: 16px;
-  height: 66px;
-  margin: 8px;
-  width: calc(3* 8px + 4* 150px);
+  margin-bottom: 8px;
+  margin-top: 0px;
+  width: 100%;
+  aspect-ratio: 7.8;
   align-items: center;
   flex-direction: column;
 }
@@ -28,6 +29,13 @@
   height: 100%;
   font-weight: 700;
   color: black;
+}
+
+@media(max-width: 639px) {
+  .card {
+    width: calc(3* 8px + 4* 22.5vw);
+    aspect-ratio: 4.174;
+  }
 }
 
 </style>

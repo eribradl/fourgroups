@@ -6,7 +6,7 @@ import SolutionGroup from './SolutionGroup.vue'
 import FaultItem from './FaultItem.vue'
 import localGames from './games.json'
 
-const shuffledWords = ref([]);
+const shuffledWords = ref<string[]>([]);
 const areAnyWordsSelected = ref(false);
 const solvedGroups = ref<any[]>([]);
 const faults = ref(4);
@@ -133,23 +133,25 @@ function checkSelectedWords() {
 </script>
 
 <template>
-  <div class = "solutions">
-    <SolutionGroup v-for = "(solvedGroup, index) of solvedGroups"
-    :key="index"
-    :style="{backgroundColor: solvedGroup['color']}">
-    {{  solvedGroup['description'] }}
-    <br>
-    {{  solvedGroup['words'].join(', ') }}
-    </SolutionGroup>
-  </div>
-  <div class = "grid">
-    <GridItem v-for="(gameWord, index) of shuffledWords" 
-    @click="toggleWord(gameWord)" 
-    :class="{ 'selected': selectedWords.includes(gameWord)}"
-    :key="index" 
-    :isSelected="selectedWords.includes(gameWord)"
-    :gameWord="gameWord">
-    </GridItem>
+  <div class = "gridWrapper">
+    <div class = "solutions">
+      <SolutionGroup v-for = "(solvedGroup, index) of solvedGroups"
+      :key="index"
+      :style="{backgroundColor: solvedGroup['color']}">
+      {{  solvedGroup['description'] }}
+      <br>
+      {{  solvedGroup['words'].join(', ') }}
+      </SolutionGroup>
+    </div>
+    <div class = "grid">
+      <GridItem v-for="(gameWord, index) of shuffledWords" 
+      @click="toggleWord(gameWord)" 
+      :class="{ 'selected': selectedWords.includes(gameWord)}"
+      :key="index" 
+      :isSelected="selectedWords.includes(gameWord)"
+      :gameWord="gameWord">
+      </GridItem>
+    </div>
   </div>
   <div class = "fault">
     Mistakes remaining:
@@ -177,13 +179,18 @@ function checkSelectedWords() {
   .grid {
     display: grid;
     gap: 8px;
-    width: calc(3* 8px + 4* 150px);
-    height: calc(3* 8px + 4* 80px);
     bottom: 0;
     grid-template-columns: repeat(4, 1fr);
     min-height: 0;
     min-width: 0;
-    margin-bottom: 16px
+    width: 100%;
+  }
+  .gridWrapper {
+    /* display: flex; */
+    /* flex-direction: column; */
+    width: calc(3* 8px + 4* 150px);
+    height: calc(3* 8px + 4* 80px);
+    margin-bottom: 20px;
   }
 
   .fault {
@@ -198,7 +205,9 @@ function checkSelectedWords() {
 
   @media(max-width: 639px) {
   .grid {
-    margin-bottom: 20px;
+    width: 100%;
+  }
+  .gridWrapper {
     height: calc(3* 8px + 4* 22.5vw);
     width: calc(3* 8px + 4* 22.5vw);
   }

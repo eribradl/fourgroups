@@ -19,6 +19,7 @@ const props = defineProps(['isSelected', 'gameWord']);
   border-radius: 6px;
   cursor: pointer;
   color: black;
+  aspect-ratio: 1.875;
 }
 
 .card-content {
@@ -34,6 +35,9 @@ const props = defineProps(['isSelected', 'gameWord']);
 @media(max-width: 639px) {
   .card-content {
     font-size: 16px;
+  }
+  .card {
+    aspect-ratio: 1;
   }
 }
 
