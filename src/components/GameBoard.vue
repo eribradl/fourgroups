@@ -8,7 +8,7 @@ import localGames from '../games.json'
 
 const shuffledWords = ref([]);
 const areAnyWordsSelected = ref(false);
-const solvedGroups = ref([]);
+const solvedGroups = ref<any[]>([]);
 const faults = ref(4);
 const anyFaultsRemaining = ref(true);
 const gameWon = ref(false);
@@ -59,10 +59,10 @@ function getRandomInt(max: number) {
   return Math.floor(Math.random() * max);
 }
 
-const selectedWords = ref([]);
+const selectedWords = ref<string[]>([]);
 const readyToSubmit = ref(false);
 
-function toggleWord(wordBeingToggled) {
+function toggleWord(wordBeingToggled: string) {
   if (selectedWords.value.includes(wordBeingToggled)) {
     selectedWords.value = selectedWords.value.filter(word => word !== wordBeingToggled)
   } else if (selectedWords.value.length < 4 && !selectedWords.value.includes(wordBeingToggled)) {
@@ -82,7 +82,7 @@ function toggleWord(wordBeingToggled) {
   }
 }
 
-const resultSummary = ref([]);
+const resultSummary = ref<string[]>([]);
 function checkSelectedWords() {
   let guessEmojis="";
   // find corresponding emojis for each guessWord
