@@ -18,7 +18,7 @@ const gameId = 1;
 const jsonResponse = localGames;
 const allGames = jsonResponse.games;
 const targetGame = allGames.find((element: any) => element.id == gameId);
-const orderedList = extractWordListFromAnswers(targetGame.answers);
+const orderedList = extractWordListFromAnswers(targetGame?.answers);
 shuffleWordList(orderedList);
 
 function extractWordListFromAnswers(answers: any) {
@@ -87,7 +87,7 @@ function checkSelectedWords() {
   let guessEmojis="";
   // find corresponding emojis for each guessWord
   selectedWords.value.forEach(selectedWord => {
-    targetGame.answers.forEach(answer => {
+    targetGame?.answers.forEach(answer => {
       if (answer.words.includes(selectedWord)) {
         guessEmojis = guessEmojis + answer.emoji;
       }
@@ -96,7 +96,7 @@ function checkSelectedWords() {
   resultSummary.value.push(guessEmojis);
 
   let matchFoundOverall = false;
-  targetGame.answers.forEach(answer => {
+  targetGame?.answers.forEach(answer => {
     let matchFound = false;
     const sortedAnswers = answer.words.slice().sort();
     const sortedGuess = selectedWords.value.slice().sort();
@@ -136,10 +136,10 @@ function checkSelectedWords() {
   <div class = "solutions">
     <SolutionGroup v-for = "(solvedGroup, index) of solvedGroups"
     :key="index"
-    :style="{backgroundColor: solvedGroup.color}">
-    {{  solvedGroup.description }}
+    :style="{backgroundColor: solvedGroup['color']}">
+    {{  solvedGroup['description'] }}
     <br>
-    {{  solvedGroup.words.join(', ') }}
+    {{  solvedGroup['words'].join(', ') }}
     </SolutionGroup>
   </div>
   <div class = "grid">
