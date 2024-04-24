@@ -203,6 +203,5 @@ function checkSelectedWords() {
     width: calc(3* 8px + 4* 22.5vw);
   }
 }
-
 </style>
 
