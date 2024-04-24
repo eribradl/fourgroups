@@ -35,13 +35,14 @@ button {
   text-align: center;
   justify-content: center;
   align-items: center;
-  padding: 15px 15px;
+  padding: 15px;
   max-width: 80vw;
   border-radius: 32px;
   line-height: 1.5em;
   cursor: pointer;
   border: 1px solid;
   margin-top: 16px;
-  margin-left: 8px
+  margin-left: 8px;
+  margin-bottom: 16px;
 }
 </style>

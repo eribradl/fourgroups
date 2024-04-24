@@ -4,7 +4,7 @@ import ButtonPanel from './ButtonPanel.vue'
 import GridItem from './GridItem.vue'
 import SolutionGroup from './SolutionGroup.vue'
 import FaultItem from './FaultItem.vue'
-import localGames from '../games.json'
+import localGames from './games.json'
 
 const shuffledWords = ref([]);
 const areAnyWordsSelected = ref(false);
@@ -13,7 +13,7 @@ const faults = ref(4);
 const anyFaultsRemaining = ref(true);
 const gameWon = ref(false);
 
-const gameId = 1;
+const gameId = getRandomInt(303);
 
 const jsonResponse = localGames;
 const allGames = jsonResponse.games;
