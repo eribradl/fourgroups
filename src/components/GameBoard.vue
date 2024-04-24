@@ -143,12 +143,12 @@ function checkSelectedWords() {
     </SolutionGroup>
   </div>
   <div class = "grid">
-    <GridItem v-for="(gridItem, index) of shuffledWords" 
-    @click="toggleWord(gridItem)" 
-    :class="{ 'selected': selectedWords.includes(gridItem)}"
+    <GridItem v-for="(gameWord, index) of shuffledWords" 
+    @click="toggleWord(gameWord)" 
+    :class="{ 'selected': selectedWords.includes(gameWord)}"
     :key="index" 
-    :isSelected="selectedWords.includes(gridItem)">
-      {{ gridItem }}
+    :isSelected="selectedWords.includes(gameWord)"
+    :gameWord="gameWord">
     </GridItem>
   </div>
   <div class = "fault">
@@ -178,6 +178,7 @@ function checkSelectedWords() {
     display: grid;
     gap: 8px;
     width: calc(3* 8px + 4* 150px);
+    height: calc(3* 8px + 4* 80px);
     bottom: 0;
     grid-template-columns: repeat(4, 1fr);
     min-height: 0;
@@ -194,5 +195,14 @@ function checkSelectedWords() {
   .results {
     text-align: center;
   }
+
+  @media(max-width: 639px) {
+  .grid {
+    margin-bottom: 20px;
+    height: calc(3* 8px + 4* 22.5vw);
+    width: calc(3* 8px + 4* 22.5vw);
+  }
+}
+
 </style>
 

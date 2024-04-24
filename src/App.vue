@@ -5,9 +5,7 @@ import GameBoard from './components/GameBoard.vue'
 
 <template>
   <header>
-    <div class="wrapper">
-      <GreetingHeader msg="Ms. Hubley's Science Connections" />
-    </div>
+    <GreetingHeader msg="Create four groups of four!" />
   </header>
 
   <main>
@@ -26,5 +24,7 @@ main {
   display: flex;
   flex-direction: column;
   align-items: center;
+  width: 100vw;
 }
+
 </style>

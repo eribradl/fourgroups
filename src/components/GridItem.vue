@@ -1,14 +1,14 @@
-<script setup>
+<script setup lang="ts">
 import { defineProps } from "vue";
 
-const props = defineProps(['isSelected'])
+const props = defineProps(['isSelected', 'gameWord']);
 
 </script>
 
 <template>
   <div class="card" >
     <div class="card-content">
-      <slot></slot>
+      <slot>{{ props.gameWord }}</slot>
     </div>
   </div>
 </template>
@@ -22,10 +22,19 @@ const props = defineProps(['isSelected'])
 }
 
 .card-content {
+  display: grid;
   padding: 20px;
   font-size: 20px;
   font-weight: 700;
   text-align: center;
+  align-items: center;
+  height: 100%;
+}
+
+@media(max-width: 639px) {
+  .card-content {
+    font-size: 16px;
+  }
 }
 
 .selected {
