@@ -23,7 +23,7 @@ const props = defineProps(['isSelected', 'gameWord']);
 
 .card-content {
   display: grid;
-  padding: 20px;
+  /* padding: 20px; */
   font-size: 20px;
   font-weight: 700;
   text-align: center;
