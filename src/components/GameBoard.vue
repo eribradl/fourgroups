@@ -45,10 +45,6 @@ function shuffleWordList(array: any) {
   shuffledWords.value = array;
 }
 
-function reshuffleWords() {
-  shuffleWordList(shuffledWords.value);
-}
-
 function deselectAllWords() {
   selectedWords.value = [];
   readyToSubmit.value = false;
@@ -130,6 +126,58 @@ function checkSelectedWords() {
   }
 }
 
+let width = ref(window.innerWidth);
+
+window.onresize = () => {
+  width.value = window.innerWidth;
+}
+
+function updateFontSize(windowWidth: number, gameWord: string): string {
+  const thresholds = [300, 375, 639];
+  const fontSizeArray = getFontSizes(lengthOfLongestWord(gameWord));
+  let screenSizeIndex = thresholds.findIndex(threshold => windowWidth < threshold);
+  screenSizeIndex = screenSizeIndex === -1 ? thresholds.length : screenSizeIndex;
+  return fontSizeArray[screenSizeIndex] + 'px';
+  // console.log(gameWord + fontSize + " " + windowWidth + " " + screenSizeIndex + " " + fontSizeArray)
+}
+
+function lengthOfLongestWord(gameString: string): number {
+  return gameString.split(" ").sort((e, t) => t.length - e.length)[0].length;
+}
+
+function getFontSizes(wordLength: number):number[] {
+  switch (wordLength) {
+    case 1:
+    case 2:
+    case 3:
+    case 4:
+    case 5:
+        return [16, 16, 16, 20];
+    case 6:
+        return [15, 16, 16, 20];
+    case 7:
+        return [12, 16, 16, 20];
+    case 8:
+        return [11.5, 15, 15, 20];
+    case 9:
+        return [10.5, 12, 12, 20];
+    case 10:
+        return [10, 11.5, 11.5, 20];
+    case 11:
+        return [9.5, 11.5, 11.5, 20];
+    case 12:
+        return [8, 10.5, 10.5, 20];
+    case 13:
+        return [8, 10, 10.5, 17];
+    case 14:
+        return [7, 9.5, 10, 16];
+    case 15:
+        return [7, 9, 9.5, 15];
+    default:
+        return [7, 9, 9, 14];
+  }
+}
+
 </script>
 
 <template>
@@ -144,12 +192,12 @@ function checkSelectedWords() {
       </SolutionGroup>
     </div>
     <div class = "grid">
-      <GridItem v-for="(gameWord, index) of shuffledWords" 
+      <GridItem v-for="(gameWord) of shuffledWords" 
       @click="toggleWord(gameWord)" 
       :class="{ 'selected': selectedWords.includes(gameWord)}"
-      :key="index" 
-      :isSelected="selectedWords.includes(gameWord)"
-      :gameWord="gameWord">
+      :key="gameWord" 
+      :gameWord="gameWord"
+      :fontSize="updateFontSize(width, gameWord)">
       </GridItem>
     </div>
   </div>
@@ -160,7 +208,7 @@ function checkSelectedWords() {
     </FaultItem>
   </div>
   <ButtonPanel v-if="anyFaultsRemaining && !gameWon"
-  @shuffle="reshuffleWords" @deselect="deselectAllWords" @submit="checkSelectedWords" 
+  @shuffle="shuffleWordList(shuffledWords)" @deselect="deselectAllWords" @submit="checkSelectedWords" 
   :enableSubmit="readyToSubmit" :disableDeselect="!areAnyWordsSelected"/>
   <div class = "results" v-if="!anyFaultsRemaining || gameWon">
     <p v-if="!anyFaultsRemaining">

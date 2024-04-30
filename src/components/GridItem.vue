@@ -1,14 +1,12 @@
 <script setup lang="ts">
-import { defineProps } from "vue";
-
-const props = defineProps(['isSelected', 'gameWord']);
+const props = defineProps(['gameWord', 'fontSize']);
 
 </script>
 
 <template>
   <div class="card" >
     <div class="card-content">
-      <slot>{{ props.gameWord }}</slot>
+      {{ props.gameWord }}
     </div>
   </div>
 </template>
@@ -20,22 +18,20 @@ const props = defineProps(['isSelected', 'gameWord']);
   cursor: pointer;
   color: black;
   aspect-ratio: 1.875;
+  overflow: hidden;
 }
 
 .card-content {
   display: grid;
-  /* padding: 20px; */
-  font-size: 20px;
+  font-family: "Source Sans 3", sans-serif;
   font-weight: 700;
   text-align: center;
   align-items: center;
   height: 100%;
+  font-size: v-bind(fontSize);
 }
 
 @media(max-width: 639px) {
-  .card-content {
-    font-size: 16px;
-  }
   .card {
     aspect-ratio: 1;
   }
